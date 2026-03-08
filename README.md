@@ -1,7 +1,7 @@
 # Cyclistic Bike-Share Analysis: Case Study
 
 ## Project Overview
-This project is part of the Google Data Analytics Professional Certificate capstone. As a junior data analyst on the marketing team at Cyclistic, a fictional bike-share company in Chicago, my goal was to analyze historical trip data to understand how annual members and casual riders use the service differently. 
+This project is part of the Google Data Analytics Professional Certificate capstone. As a junior data analyst on the marketing team at Cyclistic, a fictional bike-share company in Chicago, my goal was to analyze historical trip data to understand how annual members(subscribers) and casual riders use the service differently. 
 
 The ultimate business objective is to provide data-driven insights to help design marketing strategies aimed at converting casual riders into more profitable annual members.
 
