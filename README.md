@@ -15,13 +15,18 @@ Ride Duration: On average, casual riders have significantly longer trip duration
 
 ## Tools & Process
 Language: R
+
 Environment: RStudio
+
 Libraries: tidyverse (data manipulation), ggplot2 (visualizations), lubridate (date/time handling).
+
 Workflow: Followed the six phases of the data analysis process: Ask, Prepare, Process, Analyze, Share, and Act.
 
 ## Repository Contents
 Cyclistic_analysis.Rmd: The complete R code for data cleaning, transformation, and analysis.
-Cyclistic_Presentation.pptx: The final stakeholder presentation summarizing key trends and recommendations.
+
+Cyclistic_Analysis.pptx: The final stakeholder presentation summarizing key trends and recommendations.
+
 README.md: Project documentation and summary.
 
 ## Recommendations
