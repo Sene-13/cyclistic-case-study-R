@@ -20,7 +20,7 @@ Libraries: tidyverse (data manipulation), ggplot2 (visualizations), lubridate (d
 Workflow: Followed the six phases of the data analysis process: Ask, Prepare, Process, Analyze, Share, and Act.
 
 ## Repository Contents
-cyclistic_analysis.Rmd: The complete R code for data cleaning, transformation, and analysis.
+Cyclistic_analysis.Rmd: The complete R code for data cleaning, transformation, and analysis.
 Cyclistic_Presentation.pptx: The final stakeholder presentation summarizing key trends and recommendations.
 README.md: Project documentation and summary.
 
