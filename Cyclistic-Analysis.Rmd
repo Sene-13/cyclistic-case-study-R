@@ -1,0 +1,138 @@
+---
+title: "Navigating  Chicago's Cyclistic Bike-Share Company's Success"
+author: "Patricia"
+date: "2025-12-29"
+output:
+  HTML: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(readr)
+library(janitor)
+library(skimr)
+library(dplyr)
+library(hms)
+library(lubridate)
+library(ggplot2)
+Trips_2019 <- read_csv("Divvy_Trips_2019_Q1 - Divvy_Trips_2019_Q1.csv")
+Trips_2020 <- read_csv("Divvy_Trips_2020_Q1 - Divvy_Trips_2020_Q1.csv")
+Trips_2019 <- Trips_2019 %>%
+  mutate(
+    birthyear= replace_na(birthyear, median(birthyear, na.rm = TRUE))
+  )
+Trips_2020 <- Trips_2020 %>%
+  drop_na(end_lng, end_lat, end_station_id)
+Trips_2019 <- Trips_2019 %>%
+  mutate(
+    day_of_week= as.integer(wday(start_time))
+  )
+Trips_2019 <- Trips_2019 %>%
+  mutate(
+    ride_length= as_hms(tripduration)
+  )
+Trips_2020 <- Trips_2020 %>%
+  mutate(tripduration = as.numeric(difftime(ended_at, started_at, units = "secs")))
+Trips_2020 <- Trips_2020 %>%
+  mutate(
+    ride_length = as_hms(tripduration)
+  )
+Trips_2020 <- Trips_2020 %>%
+  mutate(
+    day_of_week= as.integer(wday(started_at))
+  )
+Trips_2020 <- Trips_2020 %>%
+  rename(usertype = member_casual) %>%
+  mutate(usertype = recode(usertype,
+                           "casual" = "customer",
+                           "member" = "subscriber"))
+ride_summ19 <- Trips_2019 %>%
+  group_by(usertype, day_of_week) %>%
+  summarise(
+    number_of_rides = n(),
+    avg_duration = mean(ride_length, na.rm = TRUE)
+  ) %>%
+  arrange(usertype, day_of_week)
+ride_summ20 <- Trips_2020 %>%
+  group_by(usertype, day_of_week) %>%
+  summarise(
+    number_of_rides = n(),
+    avg_duration = mean(ride_length, na.rm = TRUE)
+  ) %>%
+  arrange(usertype, day_of_week)
+Trips_2019 <- Trips_2019 %>%
+  mutate(hour = hour(start_time))
+hourly_usage19 <- Trips_2019 %>%
+  group_by(usertype, hour) %>%
+  summarise(number_of_rides = n(), .groups = "drop")
+Trips_2020 <- Trips_2020 %>%
+  mutate(hour = hour(started_at))
+hourly_usage20 <- Trips_2020 %>%
+  group_by(usertype, hour) %>%
+  summarise(number_of_rides = n(), .groups = "drop")
+
+```
+
+## Converting Casual Users to Annual Members for Speedy Success
+
+### Average Ride Length  
+The analysis of the 2019 Trip data shows that Subscribers have an average ride length of 13.89 minutes while Customers average 61.93 minutes. The 2020 Trip data shows that Subscribers average 12.68 minutes while Customers average 95.79 minutes.
+
+
+### Number of Rides by Day and User Type
+
+```{r setup2}
+ggplot(ride_summ19, aes(x = day_of_week, y = number_of_rides, fill = usertype))+
+  geom_col(position = "dodge") +
+  labs(title = "Number of Rides by Day and User Type 2019")
+```
+
+```{r setup3}
+ggplot(ride_summ20, aes(x = day_of_week, y = number_of_rides, fill = usertype))+
+  geom_col(position = "dodge") +
+  labs(title = "Number of Rides by Day and User Type 2020")
+```
+
+### Hourly Usage
+
+```{r setup4}
+ggplot(data = hourly_usage19, aes(x = hour, y= number_of_rides, color = usertype))+
+  geom_line(linewidth = 1) +
+  geom_point() +
+  scale_x_continuous(breaks = seq(0, 23, by = 2)) +
+  labs(title = "Peak Usage by Hour 2019",
+       x = "Hour of Day (24h Clock))",
+       y = "Number of Rides",
+       color = "usertype") +
+  theme_minimal()
+
+```
+
+```{r setup5}
+ggplot(data = hourly_usage20, aes(x = hour, y= number_of_rides, color = usertype))+
+  geom_line(linewidth = 1) +
+  geom_point() +
+  scale_x_continuous(breaks = seq(0, 23, by = 2)) +
+  labs(title = "Peak Usage by Hour 2020",
+       x = "Hour of Day (24h Clock))",
+       y = "Number of Rides",
+       color = "usertype") +
+  theme_minimal()
+```
+
+
+## Summary
+- one
+- two
+- three
+
+## Recommendations
+
+## Questions
+
+
+
+
+
