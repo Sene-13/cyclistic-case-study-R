@@ -1,5 +1,8 @@
 # Cyclistic Bike-Share Analysis: Case Study
 
+## Business Impact
+This project demonstrates the full lifecycle of data-driven decision-making. I transformed complex behavioral data into a strategic PowerPoint presentation, translating technical R code into clear, actionable insights for stakeholders. It highlights my ability to handle Business Writing and executive-level reporting.
+
 ## Project Overview
 This project is part of the Google Data Analytics Professional Certificate capstone. As a junior data analyst on the marketing team at Cyclistic, a fictional bike-share company in Chicago, my goal was to analyze historical trip data to understand how annual members(subscribers) and casual riders use the service differently. 
 
